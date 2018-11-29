@@ -32,6 +32,11 @@ public class OwlConfigServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(OwlConfigServiceApplication.class, args);
+
+
+
     }
+
+
 
 }
