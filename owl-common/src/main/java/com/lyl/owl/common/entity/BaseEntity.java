@@ -2,7 +2,6 @@ package com.lyl.owl.common.entity;
 
 import com.google.common.base.MoreObjects;
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
