@@ -54,6 +54,24 @@ public abstract class RefreshableConfig {
 
     }
 
+    public int getIntProperty(String key, int defaultValue){
+        try {
+
+        }
+    }
+
+    public String getValue(String key, String defaultValue){
+        try {
+            return environment.getProperty(key, defaultValue);
+        } catch (Throwable e){
+            tracer
+        }
+        return environment.getProperty(key);
+    }
+
+    public String getValue(String key){
+        return environment.getProperty(key);
+    }
 
 }
 

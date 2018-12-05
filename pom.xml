@@ -40,6 +40,12 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>2.0.5.RELEASE</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.dianping.cat/cat-client -->
+        <dependency>
+            <groupId>com.dianping.cat</groupId>
+            <artifactId>cat-client</artifactId>
+            <version>3.0.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
