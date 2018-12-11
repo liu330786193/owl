@@ -2,6 +2,7 @@ package com.lyl.owl.common.config;
 
 import com.google.common.base.Splitter;
 import com.lyl.owl.core.utils.ApolloThreadFactory;
+import com.lyl.owl.tracer.Tracer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -56,17 +57,42 @@ public abstract class RefreshableConfig {
 
     public int getIntProperty(String key, int defaultValue){
         try {
-
+            String value = getValue(key);
+            return value == null ? defaultValue : Integer.parseInt(value);
+        } catch (Throwable ex){
+            Tracer.logError("Get int property failed.", ex);
+            return defaultValue;
         }
     }
+
+    public boolean getBooleanProperty(String key, boolean defaultValue){
+        try {
+            String value = getValue(key);
+            return value == null ? defaultValue : "true".equals(value);
+        } catch (Throwable ex){
+            Tracer.logError("Get boolean property failed.", ex);
+            return defaultValue;
+        }
+    }
+
+    public String[] getArrayProperty(String key, String[] defaultValue){
+        try {
+            String value = getValue(key);
+            return value == null ? defaultValue : value.split(LIST_SEPARATOR);
+        } catch (Throwable ex){
+            Tracer.logError("Get array property failed.", ex);
+            return defaultValue;
+        }
+    }
+
 
     public String getValue(String key, String defaultValue){
         try {
             return environment.getProperty(key, defaultValue);
         } catch (Throwable e){
-            tracer
+            Tracer.logError("Get value failed.", e);
         }
-        return environment.getProperty(key);
+        return defaultValue;
     }
 
     public String getValue(String key){

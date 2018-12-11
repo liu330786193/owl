@@ -60,7 +60,7 @@ public class CatMessageProducer implements MessageProducer {
     }
 
     @Override
-    public void logEvent(String type, String name, String status, Throwable nameValuePairs) {
+    public void logEvent(String type, String name, String status, String nameValuePairs) {
         try {
             LOG_EVENT_WITH_TYPE_AND_NAME_AND_STATUS_AND_NAME_VALUE_PAIRS.invoke(null, type, name,
                     status, nameValuePairs);
@@ -70,7 +70,7 @@ public class CatMessageProducer implements MessageProducer {
     }
 
     @Override
-    public Transaction newTranaction(String type, String name) {
+    public Transaction newTransaction(String type, String name) {
         try {
             return new CatTransaction(NEW_TRANSACTION_WITH_TYPE_AND_NAME.invoke(null, type, name));
         } catch (Throwable ex) {

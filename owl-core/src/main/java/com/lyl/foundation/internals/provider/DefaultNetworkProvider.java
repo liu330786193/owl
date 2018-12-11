@@ -1,0 +1,45 @@
+package com.lyl.foundation.internals.provider;
+
+import com.lyl.foundation.NetworkInterfaceManager;
+import com.lyl.foundation.spi.NetworkProvider;
+import com.lyl.foundation.spi.Provider;
+
+public class DefaultNetworkProvider implements NetworkProvider {
+    @Override
+    public String getHostAddress() {
+        return NetworkInterfaceManager.INSTANCE.getLocalHostAddress();
+    }
+
+    @Override
+    public String getHostName() {
+        return NetworkInterfaceManager.INSTANCE.getLocalHostName();
+    }
+
+    @Override
+    public Class<? extends Provider> getType() {
+        return NetworkProvider.class;
+    }
+
+    @Override
+    public String getProperty(String name, String defaultValue) {
+        if ("host.address".equalsIgnoreCase(name)){
+            String val = getHostAddress();
+            return val == null ? defaultValue : val;
+        } else if ("host.name".equalsIgnoreCase(name)){
+            String val = getHostName();
+            return val == null ? defaultValue : val;
+        }else {
+            return defaultValue;
+        }
+    }
+
+    @Override
+    public void initialize() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "hostName [" + getHostName() + "] hostIP [" + getHostAddress() + "] (DefaultNetworkProvider)";
+    }
+}

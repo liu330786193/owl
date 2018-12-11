@@ -18,17 +18,17 @@ public class NullMessageProducer implements MessageProducer {
     }
 
     @Override
-    public void logEvent(String type, Throwable cause) {
+    public void logEvent(String type, String name) {
 
     }
 
     @Override
-    public void logEvent(String type, String name, String status, Throwable nameValuePairs) {
+    public void logEvent(String type, String name, String status, String nameValuePairs) {
 
     }
 
     @Override
-    public Transaction newTranaction(String type, String name) {
+    public Transaction newTransaction(String type, String name) {
         return NULL_TRANSACTION;
     }
 }
